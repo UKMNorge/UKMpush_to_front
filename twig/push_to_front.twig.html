@@ -1,1 +1,14 @@
-{% embed "wp_dashboard.twig.html" %}{% endembed %}
+<div class="clearfix"></div>
+<div class="col-xs-12 col-sm-6 col-md-4">
+	<h2>Følgende nyheter vises på din plakat</h2>
+	<p class="lead">Du kan endre disse så ofte du vil</p>
+	<p>Du bestemmer selv hvor mange saker (inntil 3) du vil vise: jo færre, jo større blir de</p>
+	<p>Velg nyhetssaker som kan ha nasjonal interesse, ikke rene info-saker om fylkesmønstringen. Gjerne intervjuer og saker om personer/grupper</p>
+
+	{% embed "form_nyheter.twig.html" %}{% endembed %}
+</div>
+<div class="col-xs-12 col-sm-6 col-md-8">
+	<h2>Endre utseende på din plakat</h2>
+	<p>Plakatbildene vil bli beskåret kraftig ved visning. Det er derfor viktig at du velger et bilde hvor motivet er i senter, slik at kantene kan kuttes bort.</p>
+	{% embed "form_bilder.twig.html" %}{% endembed %}
+</div>

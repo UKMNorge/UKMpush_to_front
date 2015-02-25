@@ -1,0 +1,19 @@
+<form action="admin.php?page=UKMpush_to_front" method="post">	
+	{% for i in 1..3 %}
+		<div class="form-group">
+			<label for="post_{{ i }}">Innlegg {{ i }}</label>
+			<select name="post_{{ i }}" class="form-control" {{ UKMpush_to_front_post[i] == 0 ? 'selected="selected"' : '' }}>
+				<option value="0">Ikke valgt</option>
+				{% for post in my_posts %}
+					<option value="{{post.ID}}" {{ UKMpush_to_front_post[i] == post.ID ? 'selected="selected"' : '' }}>{{post.title}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% endfor %}
+	<div class="clearfix"></div>
+	<p>
+		<button type="submit" class="btn btn-success">Lagre</button>
+	</p>
+	<div class="clearfix"></div>
+
+</form>
