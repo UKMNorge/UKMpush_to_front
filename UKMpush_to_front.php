@@ -12,7 +12,7 @@ if(is_admin()) {
 	if( get_option('site_type') == 'fylke' ) {
 		add_action('UKM_admin_menu', 'UKMpush_to_front_menu');
 	}
-	add_action('network_admin_menu', 'UKMpush_to_front_menu_network');	
+#	add_action('network_admin_menu', 'UKMpush_to_front_menu_network');	
 	
 	add_action('UKMwp_dashboard_load_controllers', 'UKMpush_to_front_dash_hook');
 	
