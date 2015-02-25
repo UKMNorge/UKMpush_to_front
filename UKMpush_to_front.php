@@ -109,7 +109,7 @@ function UKMpush_to_front_load_fm_data( $fm ) {
 	$fylke = get_site_option('UKMpush_to_front_fylke_'.$fm);
 	// Load all posts
 	if( is_array( $fylke->posts ) ) {
-		switch_to_blog( $fylke->ID );
+		switch_to_blog( $fylke->blog_id );
 		foreach( $fylke->posts as $post_id ) {
 			$post	= get_post( $post_id );
 			@$WPOO_post	= new WPOO_Post( $post );
