@@ -91,11 +91,11 @@ function UKMpush_to_front_generate_object() {
 		$uke = array();
 	}
 	$uke[] = $fylke->ID;
-	update_site_option('UKMpush_to_front_uke_'. $m->g('season') .'_'. $fylke->uke, $uke);
+	update_site_option('UKMpush_to_front_uke_'. $m->g('season') .'_'. (int)$fylke->uke, $uke);
 }
 
 function UKMpush_to_front_load_all_fm_data( $year, $week ) {
-	$fylkesmonstringer = get_site_option('UKMpush_to_front_uke_'. $year .'_'. ($week<10 ? '0':''). $week);
+	$fylkesmonstringer = get_site_option('UKMpush_to_front_uke_'. $year .'_'. $week);
 	$return_monstringer = array();
 	if( is_array( $fylkesmonstringer ) ) {
 		foreach( $fylkesmonstringer as $fm ) {
