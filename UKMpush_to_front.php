@@ -62,6 +62,9 @@ function UKMpush_to_front_scripts_and_styles(){
 
 
 function UKMpush_to_front_generate_object() {
+	if( get_option('site_type') != 'fylke' ) {
+		return;
+	}
 	global $blog_id;
 	$m = new monstring( get_option('pl_id') );
 	$fylke = new stdClass();
