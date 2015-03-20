@@ -94,6 +94,9 @@ function UKMpush_to_front_generate_object() {
 		$uke = array();
 	}
 	$uke[] = $fylke->ID;
+	
+	array_unique( $uke );
+	
 	update_site_option('UKMpush_to_front_uke_'. $m->g('season') .'_'. (int)$fylke->uke, $uke);
 }
 
