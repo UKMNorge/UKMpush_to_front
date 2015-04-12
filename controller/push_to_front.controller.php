@@ -57,7 +57,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 // FETCH POSTS
-$posts = query_posts( 'post_status=publish' );
+$posts = query_posts( 'post_status=publish&posts_per_page=-1' );
 global $post;
 foreach( $posts as $key => $post ) {
 	the_post();
