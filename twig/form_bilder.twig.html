@@ -1,23 +1,26 @@
-<form action="admin.php?page=UKMpush_to_front" method="post">	
-	<div class="col-xs-12 col-sm-6">
-		<h4 for="cover_landscape">Liggende</h4>
-		<img src="{{ UKMpush_to_front_cover.landscape.url }}" class="col-xs-12 col-sm-6" id="cover_landscape_image" />
-		<input type="hidden" id="cover_landscape_url" name="cover_landscape_url" class="form-control" value="{{ UKMpush_to_front_cover.landscape.url }}" placeholder="Full URL" />
-		<input type="hidden" id="cover_landscape_id"  name="cover_landscape_id" class="form-control" value="{{ UKMpush_to_front_cover.landscape.id }}" placeholder="ID" />
-		<button type="button" class="btn btn-primary btn-sm" id="insertMedia" data-target="cover_landscape">Velg bilde</button>
-	</div>
-	
-	<div class="col-xs-12 col-sm-6">
-		<h4 for="cover_portrait">Stående</h4>
-		<img src="{{ UKMpush_to_front_cover.portrait.url }}" class="col-xs-12 col-sm-6" id="cover_portrait_image" />
-		<input type="hidden" id="cover_portrait_url" name="cover_portrait_url" class="form-control" value="{{ UKMpush_to_front_cover.portrait.url }}" placeholder="Full URL" />
-		<input type="hidden" id="cover_portrait_id"  name="cover_portrait_id" class="form-control" value="{{ UKMpush_to_front_cover.portrait.id }}" placeholder="ID" />
-		<button type="button" class="btn btn-primary btn-sm" id="insertMedia" data-target="cover_portrait">Velg bilde</button>
-	</div>
-	
-	<div class="clearfix"></div>
-	<p>
-		<button type="submit" class="btn btn-success">Lagre cover-bilder</button>
-	</p>
-	<div class="clearfix"></div>
-</form>
+
+<div class="col-xs-12 col-sm-6">
+	<h4 for="cover_landscape">Liggende</h4>
+	<img src="{{ UKMpush_to_front_cover.landscape.url }}" class="col-xs-12 col-sm-6" id="cover_landscape_image" />
+	<input type="hidden" id="cover_landscape_url" name="cover_landscape_url" class="form-control" value="{{ UKMpush_to_front_cover.landscape.url }}" placeholder="Full URL" />
+	<input type="hidden" id="cover_landscape_id"  name="cover_landscape_id" class="form-control" value="{{ UKMpush_to_front_cover.landscape.id }}" placeholder="ID" />
+	<br />
+	<button type="button" class="btn btn-block btn-primary visible-xs" id="insertMedia" data-target="cover_landscape">Velg bilde</button>
+	<button type="button" class="btn btn-sm btn-primary hidden-xs" id="insertMedia" data-target="cover_landscape">Velg bilde</button>
+</div>
+
+<div class="col-xs-12 col-sm-6">
+	<h4 for="cover_portrait">Stående</h4>
+	<img src="{{ UKMpush_to_front_cover.portrait.url }}" class="col-xs-12 col-sm-6" id="cover_portrait_image" />
+	<input type="hidden" id="cover_portrait_url" name="cover_portrait_url" class="form-control" value="{{ UKMpush_to_front_cover.portrait.url }}" placeholder="Full URL" />
+	<input type="hidden" id="cover_portrait_id"  name="cover_portrait_id" class="form-control" value="{{ UKMpush_to_front_cover.portrait.id }}" placeholder="ID" />
+	<br />
+	<button type="button" class="btn btn-primary btn-block visible-xs" id="insertMedia" data-target="cover_portrait">Velg bilde</button>
+	<button type="button" class="btn btn-primary btn-sm hidden-xs" id="insertMedia" data-target="cover_portrait">Velg bilde</button>
+</div>
+
+<!-- <div class="clearfix"></div>
+<p>
+	<button type="submit" class="btn btn-success">Lagre cover-bilder</button>
+</p> -->
+<div class="clearfix"></div>
