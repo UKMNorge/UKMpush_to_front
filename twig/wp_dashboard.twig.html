@@ -1,31 +1,43 @@
-<div class="well" style="background: #fff">
-	<h2>PUSH TO FRONT: publiser nyheter på Nasjonal UKM.no</h2>
-	<p class="lead">
-		Alle fylkesmønstringer får en egen plakat på forsiden av UKM.no. Her kan du velge inntil 3 nyhetssaker, og plakatbilde for å presentere din mønstring.
-	</p>
-	
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<h4>Følgende nyheter vises på din plakat</h4>
-		<p>Du bestemmer selv hvor mange saker du vil vise, jo færre, jo større blir de</p>
-
-		{% embed "form_nyheter.twig.html" %}{% endembed %}
+<table class="table table-dashboard noborder">
+	<tbody>
+		<thead>
+		<tr>
+			<th colspan="2">Push to Front</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Alle fylkesmønstringer får en egen plakat på forsiden av UKM.no to uker før mønstringen. Her kan du velge inntil 3 nyhetssaker, og et plakatbilde for å presentere din mønstring. Les mer og velg bilder på siden Push to Front.
+			</td>
+		</tr>
 		
-		<h4>Endre utseende på din plakat</h4>
-		<a href="admin.php?page=UKMpush_to_front">Klikk her for å endre plakatbilder</a>
-	</div>
-	<div class="col-xs-12 col-sm-6 col-md-8">
-		<h4>Hvordan ser plakaten ut?</h4>
-		<p>
-			Plakaten finnes i 2 utgaver, én for små skjermer, og én for store skjermer. 
-			På bildet ser du hvordan de forskjellige elementene vises
-			<br />
-			(klikk for større utgave)
-		</p>
-		<a href="http://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/PushToFront.png" target="_blank">
-			<img src="http://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/PushToFront.png" width="100%">
-		</a>
-		
-	</div>
-	<div class="clearfix"></div>
-</div>		
-<div class="clearfix"></div>
+		{% for i in 1..3 %}
+			<tr>
+				<td>
+					<label for="post_{{ i }}">Innlegg {{ i }}</label>
+					<select id="post_{{ i }}" name="post_{{ i }}" class="form-control" {{ UKMpush_to_front_post[i] == 0 ? 'selected="selected"' : '' }}>
+						<option value="0">Ikke valgt</option>
+						{% for post in my_posts %}
+							<option value="{{post.ID}}" {{ UKMpush_to_front_post[i] == post.ID ? 'selected="selected"' : '' }}>{{post.title}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+		{% endfor %}
+		<tr>
+			<td>
+				<div class="col-xs-12 col-sm-6">
+					<div id="saveptfbtn" class="btn btn-block btn-success">Lagre</div>
+				</div>
+				<div class="visible-xs">&nbsp;</div>
+				<div class="col-xs-12 col-sm-6 visible-xs">
+					<a href="?page=UKMpush_to_front" class="btn btn-block btn-info">Gå til Push to Front</a>
+				</div>
+				<div class="col-xs-12 col-sm-6 hidden-xs">
+					<a href="?page=UKMpush_to_front" class="btn btn-block btn-info">Gå til siden</a>
+				</div>
+				
+			</td>
+		</tr>
+	</tbody>
+</table>	
