@@ -138,6 +138,11 @@ function UKMpush_to_front_load_fm_data( $fm ) {
 		}
 	}
 	
+	if( time() > $fylke->stop ) {
+		$fylke->live->link = false;
+		$fylke->live->now = false;
+	}
+	
 	// Does it have cover photos?
 	if( empty ( $fylke->cover->portrait->url ) ) {
 		$fylke->cover->portrait = 'http://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/default_portrait.jpg';
