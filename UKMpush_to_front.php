@@ -138,10 +138,10 @@ function UKMpush_to_front_load_fm_data( $fm ) {
 		}
 	}
 	
-	if( time() > $fylke->stop ) {
-		$fylke->live->link = false;
-		$fylke->live->now = false;
-	}
+#	if( time() > $fylke->stop ) {
+#		$fylke->live->link = false;
+#		$fylke->live->now = false;
+#	}
 	
 	// Does it have cover photos?
 	if( empty ( $fylke->cover->portrait->url ) ) {
