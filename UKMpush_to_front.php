@@ -127,8 +127,8 @@ function UKMpush_to_front_load_fm_data( $fm ) {
 	
 	// is live now?
 	$fylke->live->now = false;
-	$perioder = get_blog_option($fylke->ID, 'ukm_hendelser_perioder');
-	$embedcode = get_blog_option($fylke->ID, 'ukm_live_embedcode');
+	$perioder = get_blog_option($fylke->blog_id, 'ukm_hendelser_perioder');
+	$embedcode = get_blog_option($fylke->blog_id, 'ukm_live_embedcode');
 	if( $embedcode && is_array( $perioder ) ) {
 		foreach( $perioder as $p ) {
 			if( $p->start < time() && $p->stop > time() ) {
