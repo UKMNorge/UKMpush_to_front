@@ -9,13 +9,11 @@ Author URI: http://www.ukm-norge.no
 */
 
 if(is_admin()) {
-	if( get_option('site_type') == 'fylke' ) {
+	if( get_option('site_type') == 'fylke' && date("n") > 2 && date("n") < 5) {
 		add_action('UKM_admin_menu', 'UKMpush_to_front_menu');
 	}
 #	add_action('network_admin_menu', 'UKMpush_to_front_menu_network');	
-	
 	add_action('UKMwp_dashboard_load_controllers', 'UKMpush_to_front_dash_hook');
-	
 	add_action('UKMpush_to_front_generate_object', 'UKMpush_to_front_generate_object');
 }
 
