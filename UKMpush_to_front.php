@@ -87,7 +87,12 @@ function UKMpush_to_front_generate_object() {
 	update_site_option('UKMpush_to_front_fylke_'. $fylke->ID, $fylke);
 	
 	// Lagre et array med fylker som har mønstring denne uka
-	$uke = get_site_option('UKMpush_to_front_uke_'. $m->g('season') .'_'. (int)$fylke->uke);
+	// For å få PTF til å funke i dev-mode, må vi lagre årstall, ikke sesong. Dev-mode tror vi er i 2014-sesongen by default.
+	$year = $m->g('season');
+	if( 'ukm.dev' == UKM_HOSTNAME ) {
+		$year = date('Y');
+	}
+	$uke = get_site_option('UKMpush_to_front_uke_'. $year .'_'. (int)$fylke->uke);
 	if( !$uke ) {
 		$uke = array();
 	}
@@ -95,7 +100,7 @@ function UKMpush_to_front_generate_object() {
 	
 	$uke = array_unique( $uke );
 	
-	update_site_option('UKMpush_to_front_uke_'. $m->g('season') .'_'. (int)$fylke->uke, $uke);
+	update_site_option('UKMpush_to_front_uke_'. $year .'_'. (int)$fylke->uke, $uke);
 }
 
 function UKMpush_to_front_load_all_fm_data( $year, $week ) {
