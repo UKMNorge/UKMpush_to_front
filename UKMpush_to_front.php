@@ -82,6 +82,7 @@ function UKMpush_to_front_generate_object() {
 	$fylke->live = new stdClass();
 	$fylke->live->link = get_option('ukm_live_link');
 	$fylke->live->embed = get_option('ukm_live_embedcode');
+	$fylke->live->archive = "http://tv.".UKM_HOSTNAME."/fylke/".$m->info['url']."/".$m->g('season')."/";
 
 	// Lagre fylke-objektet på hovedbloggen (hvor det skal vises)
 	update_site_option('UKMpush_to_front_fylke_'. $fylke->ID, $fylke);
