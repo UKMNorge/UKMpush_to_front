@@ -82,12 +82,18 @@ function UKMpush_to_front_generate_object() {
 	$fylke->live = new stdClass();
 	$fylke->live->link = get_option('ukm_live_link');
 	$fylke->live->embed = get_option('ukm_live_embedcode');
+	$fylke->live->archive = "http://tv.".UKM_HOSTNAME."/fylke/".$m->info['url']."/".$m->g('season')."/";
 
 	// Lagre fylke-objektet på hovedbloggen (hvor det skal vises)
 	update_site_option('UKMpush_to_front_fylke_'. $fylke->ID, $fylke);
 	
 	// Lagre et array med fylker som har mønstring denne uka
-	$uke = get_site_option('UKMpush_to_front_uke_'. $m->g('season') .'_'. (int)$fylke->uke);
+	// For å få PTF til å funke i dev-mode, må vi lagre årstall, ikke sesong. Dev-mode tror vi er i 2014-sesongen by default.
+	$year = $m->g('season');
+	if( 'ukm.dev' == UKM_HOSTNAME ) {
+		$year = date('Y');
+	}
+	$uke = get_site_option('UKMpush_to_front_uke_'. $year .'_'. (int)$fylke->uke);
 	if( !$uke ) {
 		$uke = array();
 	}
@@ -95,7 +101,7 @@ function UKMpush_to_front_generate_object() {
 	
 	$uke = array_unique( $uke );
 	
-	update_site_option('UKMpush_to_front_uke_'. $m->g('season') .'_'. (int)$fylke->uke, $uke);
+	update_site_option('UKMpush_to_front_uke_'. $year .'_'. (int)$fylke->uke, $uke);
 }
 
 function UKMpush_to_front_load_all_fm_data( $year, $week ) {
