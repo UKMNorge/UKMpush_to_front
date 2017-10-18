@@ -2,7 +2,7 @@
 require_once('WPOO/WPOO/Post.php');
 require_once('WPOO/WPOO/Author.php');
 
-define('COVER_DEFAULT', 'http://grafikk.ukm.no/placeholder/post_placeholder.png');
+define('COVER_DEFAULT', 'https://grafikk.ukm.no/placeholder/post_placeholder.png');
 // COVER PHOTOS
 $cover = get_option('UKMpush_to_front_cover');
 if( !is_object( $cover ) ) {

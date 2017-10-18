@@ -19,13 +19,13 @@ if(is_admin()) {
 
 // Regular menu
 function UKMpush_to_front_menu() {
-	UKM_add_menu_page('content','Push to Front', 'Push to Front', 'publish_posts', 'UKMpush_to_front','UKMpush_to_front', 'http://ico.ukm.no/bump-top-menu.png', 8);
+	UKM_add_menu_page('content','Push to Front', 'Push to Front', 'publish_posts', 'UKMpush_to_front','UKMpush_to_front', '//ico.ukm.no/bump-top-menu.png', 8);
 	UKM_add_scripts_and_styles('UKMpush_to_front', 'UKMpush_to_front_scripts_and_styles' );
 }
 
 // Network admin menu
 function UKMpush_to_front_menu_network() {
-	$page = add_menu_page('Push to Front', 'Push to Front', 'publish_posts', 'UKMpush_to_front_network','UKMpush_to_front_network', 'http://ico.ukm.no/bump-top-menu.png', 500);
+	$page = add_menu_page('Push to Front', 'Push to Front', 'publish_posts', 'UKMpush_to_front_network','UKMpush_to_front_network', '//ico.ukm.no/bump-top-menu.png', 500);
 	add_action( 'admin_print_styles-' . $page, 'UKMvideo_scripts_and_styles' );
 }
 
@@ -149,10 +149,10 @@ function UKMpush_to_front_load_fm_data( $fm ) {
 	
 	// Does it have cover photos?
 	if( empty ( $fylke->cover->portrait->url ) ) {
-		$fylke->cover->portrait = 'http://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/default_portrait.jpg';
+		$fylke->cover->portrait = 'https://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/default_portrait.jpg';
 	}
 	if( empty ( $fylke->cover->landscape->url ) ) {
-		$fylke->cover->landscape = 'http://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/default_landscape.jpg';
+		$fylke->cover->landscape = 'https://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/default_landscape.jpg';
 	}
 	
 	return $fylke;
