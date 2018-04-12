@@ -122,6 +122,9 @@ function UKMpush_to_front_load_fm_data( $fm ) {
 		switch_to_blog( $fylke->blog_id );
 		foreach( $fylke->posts as $post_id ) {
 			$post	= get_post( $post_id );
+			if( $post->post_status != 'publish' ) {
+				continue;
+			}
 			@$WPOO_post	= new WPOO_Post( $post );
 	
 			$fylke->postdata[] = $WPOO_post;
@@ -146,13 +149,16 @@ function UKMpush_to_front_load_fm_data( $fm ) {
 #		$fylke->live->link = false;
 #		$fylke->live->now = false;
 #	}
-	
-	// Does it have cover photos?
-	if( empty ( $fylke->cover->portrait->url ) ) {
-		$fylke->cover->portrait = 'https://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/default_portrait.jpg';
+	if( is_object( $fylke ) && is_object( $fylke->cover ) && is_object( $fylke->cover->portrait ) ) {
+		// Does it have cover photos?
+		if( empty ( $fylke->cover->portrait->url ) ) {
+			$fylke->cover->portrait = 'https://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/default_portrait.jpg';
+		}
 	}
-	if( empty ( $fylke->cover->landscape->url ) ) {
-		$fylke->cover->landscape = 'https://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/default_landscape.jpg';
+	if( is_object( $fylke ) && is_object( $fylke->cover ) && is_object( $fylke->cover->landscape ) ) {
+		if( empty ( $fylke->cover->landscape->url ) ) {
+			$fylke->cover->landscape = 'https://grafikk.ukm.no/placeholder/fylkesmonstring_on_front/default_landscape.jpg';
+		}
 	}
 	
 	return $fylke;
