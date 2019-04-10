@@ -1,25 +1,15 @@
-<h1>PUSH TO FRONT: <small>publiser nyheter på Nasjonal UKM.no</small></h1>
-<p class="lead">Alle fylkesmønstringer får en egen plakat på forsiden av UKM.no i fylkesmønstringsuka. Her kan du velge inntil 3 nyhetssaker, og plakatbilde for å presentere din mønstring.</p>
+<div style="max-width: 768px">
+	<h1>PUSH TO FRONT</h1>
+	<p class="lead">Alle fylkesfestivaler får velge inntil 3 nyhetssaker som kan vises på forsiden av UKM.no.</p>
 
-<form action="admin.php?page=UKMpush_to_front" method="post">	
-	<div class="clearfix"></div>
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<h2>Følgende nyheter vises på din plakat</h2>
-		<p class="lead">Du kan endre disse så ofte du vil</p>
-		<p>Du bestemmer selv hvor mange saker (inntil 3) du vil vise: jo færre, jo større blir de</p>
+	<form action="admin.php?page=UKMpush_to_front" method="post">	
 		<p>Velg nyhetssaker som kan ha nasjonal interesse, ikke rene info-saker om fylkesmønstringen. Gjerne intervjuer og saker om personer/grupper</p>
-		
 		{% embed "form_nyheter.twig.html" %}{% endembed %}
-	</div>
-	<div class="col-xs-12 col-sm-6 col-md-8">
-		<h2>Endre utseende på din plakat</h2>
-		<p>Plakatbildene vil bli beskåret kraftig ved visning. Det er derfor viktig at du velger et bilde hvor motivet er i senter, slik at kantene kan kuttes bort.</p>
 
-		{% embed "form_bilder.twig.html" %}{% endembed %}
-	</div>
-	<div class="clearfix"></div>
-	<p>&nbsp;</p>
-	<div class="col-xs-12 col-sm-4 center">
-		<button type="submit" class="btn btn-block btn-success">Lagre</button>
-	</div>
-</form>
+		<div class="clearfix"></div>
+		<p>&nbsp;</p>
+		<div class="col-xs-12 col-sm-4 center">
+			<button type="submit" class="btn btn-block btn-success">Lagre</button>
+		</div>
+	</form>
+</div>
