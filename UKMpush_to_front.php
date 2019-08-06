@@ -10,7 +10,7 @@ Author URI: http://www.ukm-norge.no
 
 if(is_admin()) {
 	if( get_option('site_type') == 'fylke' && date("n") > 2 && date("n") < 5) {
-		add_action('UKM_admin_menu', 'UKMpush_to_front_menu');
+		add_action('admin_menu', 'UKMpush_to_front_menu');
 	}
 #	add_action('network_admin_menu', 'UKMpush_to_front_menu_network');	
 	add_action('UKMwp_dashboard_load_controllers', 'UKMpush_to_front_dash_hook');
@@ -19,8 +19,18 @@ if(is_admin()) {
 
 // Regular menu
 function UKMpush_to_front_menu() {
-	UKM_add_menu_page('content','Push to Front', 'Push to Front', 'publish_posts', 'UKMpush_to_front','UKMpush_to_front', '//ico.ukm.no/bump-top-menu.png', 8);
-	UKM_add_scripts_and_styles('UKMpush_to_front', 'UKMpush_to_front_scripts_and_styles' );
+	$page = add_submenu_page(
+		'edit.php',
+		'Push to Front',
+		'Push to Front',
+		'publish_posts',
+		'UKMpush_to_front',
+		'UKMpush_to_front'
+	);
+	add_action(
+		'admin_print_styles-' . $page,
+		['UKMkonkurranse', 'UKMpush_to_front_scripts_and_styles']
+	);
 }
 
 // Network admin menu
