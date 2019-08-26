@@ -1,10 +1,11 @@
 <?php
 require_once('UKM/monstring.class.php');
-$monstring = new monstring( get_option('pl_id') );
+$monstring = new monstring_v2( get_option('pl_id') );
 
-$show_box = $monstring->g('pl_start') - (14*24*3600);
+$show_box = new DateTime();
+$show_box->modify('+14 days');
 
-if( time() > $show_box && !$monstring->ferdig() ) {
+if( $show_box > $monstring->getStart() && !$monstring->erFerdig() ) {
 	require_once(dirname(__FILE__).'/push_to_front.controller.php');
 	
 	$dashboardPTF = TWIG('wp_dashboard.twig.html', $TWIGdata, dirname(dirname(__FILE__)));
