@@ -10,7 +10,7 @@ Author URI: http://www.ukm-norge.no
 
 if(is_admin()) {
 	if( get_option('site_type') == 'fylke' && date("n") > 2 && date("n") < 5) {
-		add_action('UKM_admin_menu', 'UKMpush_to_front_menu');
+		add_action('admin_menu', 'UKMpush_to_front_menu');
 	}
 #	add_action('network_admin_menu', 'UKMpush_to_front_menu_network');	
 	add_action('UKMwp_dashboard_load_controllers', 'UKMpush_to_front_dash_hook');
@@ -19,8 +19,18 @@ if(is_admin()) {
 
 // Regular menu
 function UKMpush_to_front_menu() {
-	UKM_add_menu_page('content','Push to Front', 'Push to Front', 'publish_posts', 'UKMpush_to_front','UKMpush_to_front', '//ico.ukm.no/bump-top-menu.png', 8);
-	UKM_add_scripts_and_styles('UKMpush_to_front', 'UKMpush_to_front_scripts_and_styles' );
+	$page = add_submenu_page(
+		'edit.php',
+		'Push to Front',
+		'Push to Front',
+		'publish_posts',
+		'UKMpush_to_front',
+		'UKMpush_to_front'
+	);
+	add_action(
+		'admin_print_styles-' . $page,
+		['UKMkonkurranse', 'UKMpush_to_front_scripts_and_styles']
+	);
 }
 
 // Network admin menu
@@ -64,16 +74,16 @@ function UKMpush_to_front_generate_object() {
 		return;
 	}
 	global $blog_id;
-	$m = new monstring( get_option('pl_id') );
+	$monstring = new monstring_v2( get_option('pl_id') );
 	$fylke = new stdClass();
-	$fylke->ID = $m->g('pl_fylke');
-	$fylke->title = $m->g('pl_name');
-	$fylke->place = $m->g('pl_place');
+	$fylke->ID = $monstring->getFylke()->getId();
+	$fylke->title = $monstring->getNavn();
+	$fylke->place = $monstring->getSted();
 	$fylke->blog_id = $blog_id;
-	$fylke->link	= $m->g('link');
-	$fylke->start = $m->g('pl_start');
-	$fylke->stopp = $m->g('pl_stop');
-	$fylke->uke = date('W', $fylke->start);
+	$fylke->link	= $monstring->getLink();
+	$fylke->start = $monstring->getStart();
+	$fylke->stopp = $monstring->getStop();
+	$fylke->uke = $monstring->getStart()->format('W');
 	
 	$fylke->posts = get_option('UKMpush_to_front_post_array');
 	
@@ -82,14 +92,16 @@ function UKMpush_to_front_generate_object() {
 	$fylke->live = new stdClass();
 	$fylke->live->link = get_option('ukm_live_link');
 	$fylke->live->embed = get_option('ukm_live_embedcode');
-	$fylke->live->archive = "http://tv.".UKM_HOSTNAME."/fylke/".$m->info['url']."/".$m->g('season')."/";
+    $fylke->live->archive = 
+        'http://tv.' . UKM_HOSTNAME .'/fylke/'.
+        $monstring->getPath() .'/'.$monstring->getSesong().'/';
 
 	// Lagre fylke-objektet på hovedbloggen (hvor det skal vises)
 	update_site_option('UKMpush_to_front_fylke_'. $fylke->ID, $fylke);
 	
 	// Lagre et array med fylker som har mønstring denne uka
 	// For å få PTF til å funke i dev-mode, må vi lagre årstall, ikke sesong. Dev-mode tror vi er i 2014-sesongen by default.
-	$year = $m->g('season');
+	$year = $monstring->getSesong();
 	if( 'ukm.dev' == UKM_HOSTNAME ) {
 		$year = date('Y');
 	}
