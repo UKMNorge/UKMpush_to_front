@@ -1,4 +1,9 @@
 <?php  
+
+use UKMNorge\Arrangement\Arrangement;
+
+require_once('UKM/Autoloader.php');
+
 /* 
 Plugin Name: UKM Push to Front
 Plugin URI: http://www.ukm-norge.no
@@ -74,7 +79,7 @@ function UKMpush_to_front_generate_object() {
 		return;
 	}
 	global $blog_id;
-	$monstring = new monstring_v2( get_option('pl_id') );
+	$monstring = new Arrangement(intval( get_option('pl_id') ));
 	$fylke = new stdClass();
 	$fylke->ID = $monstring->getFylke()->getId();
 	$fylke->title = $monstring->getNavn();

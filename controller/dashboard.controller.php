@@ -1,7 +1,10 @@
 <?php
-require_once('UKM/monstring.class.php');
+use UKMNorge\Arrangement\Arrangement;
+
+require_once('UKM/Autoloader.php');
+
 if( get_option('pl_id') ) {
-    $monstring = new monstring_v2( get_option('pl_id') );
+    $monstring = new Arrangement(intval( get_option('pl_id') ));
 
     $show_box = new DateTime();
     $show_box->modify('+14 days');
