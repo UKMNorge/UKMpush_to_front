@@ -68,7 +68,7 @@ function UKMpush_to_front_scripts_and_styles(){
 	wp_enqueue_script('WPbootstrap3_js');
 	wp_enqueue_style('WPbootstrap3_css');
 	wp_enqueue_style('UKMresources_tabs');
-	wp_enqueue_script( 'UKMptf_js', PLUGIN_PATH . 'UKMpush_to_front/UKMpush_to_front.js');
+	wp_enqueue_script( 'UKMptf_js', plugin_dir_url( __FILE__ ) . 'UKMpush_to_front.js');
 }
 
 
